@@ -645,6 +645,119 @@ export type AwsCognitoUserPoolSchemaAttribute = {
   stringAttributeConstraintsMaxValue?: Maybe<Scalars['String']>;
 };
 
+export type AwsDynamoDbTable = {
+  id: Scalars['String'];
+  arn: Scalars['String'];
+  attributes?: Maybe<Array<Maybe<AwsDynamoDbTableAttributes>>>;
+  billingModeSummary?: Maybe<AwsDynamoDbTableBillingSummary>;
+  creationDate: Scalars['String'];
+  globalIndexes?: Maybe<Array<Maybe<AwsDynamoDbTableGlobalSecondaryIndexDescription>>>;
+  globalTableVersion?: Maybe<Scalars['String']>;
+  itemCount?: Maybe<Scalars['Int']>;
+  keySchema?: Maybe<Array<Maybe<AwsDynamoDbTableIndexKeySchema>>>;
+  latestStreamArn?: Maybe<Scalars['String']>;
+  latestStreamLabel?: Maybe<Scalars['String']>;
+  localIndexes?: Maybe<Array<Maybe<AwsDynamoDbTableLocalSecondaryIndexDescription>>>;
+  name: Scalars['String'];
+  pointInTimeRecoveryEnabled?: Maybe<Scalars['Boolean']>;
+  provisionedThroughput?: Maybe<AwsDynamoDbTableProvisionedThroughputDescription>;
+  replicas?: Maybe<Array<Maybe<AwsDynamoDbTableReplicaDescription>>>;
+  restoreSummary?: Maybe<AwsDynamoDbTableRestoreSummary>;
+  sizeInBytes?: Maybe<Scalars['Int']>;
+  sseDescription?: Maybe<AwsDynamoDbTableSseDescription>;
+  status?: Maybe<Scalars['String']>;
+  streamSpecification?: Maybe<AwsDynamoDbTableStreamSpecification>;
+  tags?: Maybe<Array<Maybe<Tag>>>;
+  ttlEnabled?: Maybe<Scalars['Boolean']>;
+};
+
+export type AwsDynamoDbTableAttributes = {
+  id: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+export type AwsDynamoDbTableBillingSummary = {
+  billingMode?: Maybe<Scalars['String']>;
+  lastUpdateToPayPerRequestDateTime?: Maybe<Scalars['String']>;
+};
+
+export type AwsDynamoDbTableGlobalSecondaryIndexDescription = {
+  name?: Maybe<Scalars['String']>;
+  arn?: Maybe<Scalars['String']>;
+  itemCount?: Maybe<Scalars['Int']>;
+  keySchema?: Maybe<Array<Maybe<AwsDynamoDbTableIndexKeySchema>>>;
+  projection?: Maybe<AwsDynamoDbTableIndexProjection>;
+  sizeInBytes?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+  backfilling?: Maybe<Scalars['Boolean']>;
+  provisionedThroughput?: Maybe<AwsDynamoDbTableProvisionedThroughputDescription>;
+};
+
+export type AwsDynamoDbTableIndexKeySchema = {
+  id: Scalars['String'];
+  attributeName?: Maybe<Scalars['String']>;
+  keyType?: Maybe<Scalars['String']>;
+};
+
+export type AwsDynamoDbTableIndexProjection = {
+  type?: Maybe<Scalars['String']>;
+  nonKeyAttributes?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type AwsDynamoDbTableLocalSecondaryIndexDescription = {
+  name?: Maybe<Scalars['String']>;
+  arn?: Maybe<Scalars['String']>;
+  itemCount?: Maybe<Scalars['Int']>;
+  keySchema?: Maybe<Array<Maybe<AwsDynamoDbTableIndexKeySchema>>>;
+  projection?: Maybe<AwsDynamoDbTableIndexProjection>;
+  sizeInBytes?: Maybe<Scalars['Int']>;
+};
+
+export type AwsDynamoDbTableProvisionedThroughputDescription = {
+  lastIncreaseDateTime?: Maybe<Scalars['String']>;
+  lastDecreaseDateTime?: Maybe<Scalars['String']>;
+  numberOfDecreasesToday?: Maybe<Scalars['Int']>;
+  readCapacityUnits?: Maybe<Scalars['Int']>;
+  writeCapacityUnits?: Maybe<Scalars['Int']>;
+};
+
+export type AwsDynamoDbTableReplicaDescription = {
+  id: Scalars['String'];
+  regionName?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  statusDescription?: Maybe<Scalars['String']>;
+  statusPercentProgress?: Maybe<Scalars['String']>;
+  kmsMasterKeyId?: Maybe<Scalars['String']>;
+  readCapacityUnits?: Maybe<Scalars['Int']>;
+  globalSecondaryIndexes?: Maybe<Array<Maybe<AwsDynamoDbTableReplicaGlobalSecondaryIndexDescription>>>;
+  replicaInaccessibleDateTime?: Maybe<Scalars['String']>;
+};
+
+export type AwsDynamoDbTableReplicaGlobalSecondaryIndexDescription = {
+  name?: Maybe<Scalars['String']>;
+  readCapacityUnits?: Maybe<Scalars['Int']>;
+};
+
+export type AwsDynamoDbTableRestoreSummary = {
+  sourceBackupArn?: Maybe<Scalars['String']>;
+  sourceTableArn?: Maybe<Scalars['String']>;
+  restoreDateTime?: Maybe<Scalars['String']>;
+  restoreInProgress?: Maybe<Scalars['String']>;
+};
+
+export type AwsDynamoDbTableSseDescription = {
+  status?: Maybe<Scalars['String']>;
+  sseType?: Maybe<Scalars['String']>;
+  kmsMasterKeyArn?: Maybe<Scalars['String']>;
+  inaccessibleEncryptionDateTime?: Maybe<Scalars['String']>;
+};
+
+export type AwsDynamoDbTableStreamSpecification = {
+  streamsEnabled?: Maybe<Scalars['Boolean']>;
+  streamViewType?: Maybe<Scalars['String']>;
+};
+
 export type AwsEbs = {
   id: Scalars['String'];
   arn: Scalars['String'];
