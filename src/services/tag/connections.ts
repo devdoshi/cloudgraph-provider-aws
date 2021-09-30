@@ -4,13 +4,14 @@ import { NatGateway, Vpc } from 'aws-sdk/clients/ec2'
 import { isEmpty } from 'lodash'
 import regions, { globalRegionName } from '../../enums/regions'
 import services from '../../enums/services'
+import { RawAwsAppSync } from '../appSync/data'
+import { RawAwsCloudFormationStack } from '../cloudFormationStack/data'
+import { RawAwsCloudFormationStackSet } from '../cloudFormationStackSet/data'
 import { RawAwsCloudfront } from '../cloudfront/data'
 import { RawAwsCognitoIdentityPool } from '../cognitoIdentityPool/data'
 import { RawAwsCognitoUserPool } from '../cognitoUserPool/data'
 import { RawAwsKinesisFirehose } from '../kinesisFirehose/data'
-import { RawAwsAppSync } from '../appSync/data'
-import { RawAwsCloudFormationStackSet } from '../cloudFormationStackSet/data'
-import { RawAwsCloudFormationStack } from '../cloudFormationStack/data'
+import { RawAwsNetworkAcl } from '../nacl/data'
 
 const findServiceInstancesWithTag = (tag, service) => {
   const { id } = tag
@@ -575,24 +576,48 @@ export default ({
     /**
      * Find related Cloudformation stack sets
      */
-     const CFStacksSets: { name: string; data: { [property: string]: any[] } } =
-     data.find(({ name }) => name === services.cloudFormationStackSet)
-   if (CFStacksSets?.data?.[region]) {
-     const dataAtRegion: RawAwsCloudFormationStackSet[] =
-       findServiceInstancesWithTag(tag, CFStacksSets.data[region])
-     if (!isEmpty(dataAtRegion)) {
-       for (const instance of dataAtRegion) {
-         const { StackSetId: id } = instance
+    const CFStacksSets: { name: string; data: { [property: string]: any[] } } =
+      data.find(({ name }) => name === services.cloudFormationStackSet)
+    if (CFStacksSets?.data?.[region]) {
+      const dataAtRegion: RawAwsCloudFormationStackSet[] =
+        findServiceInstancesWithTag(tag, CFStacksSets.data[region])
+      if (!isEmpty(dataAtRegion)) {
+        for (const instance of dataAtRegion) {
+          const { StackSetId: id } = instance
 
-         connections.push({
-           id,
-           resourceType: services.cloudFormationStackSet,
-           relation: 'child',
-           field: 'cloudFormationStackSet',
-         })
-       }
-     }
-   }
+          connections.push({
+            id,
+            resourceType: services.cloudFormationStackSet,
+            relation: 'child',
+            field: 'cloudFormationStackSet',
+          })
+        }
+      }
+    }
+
+    /**
+     * Find related Network ACLs
+     */
+    const NetworkACLs: { name: string; data: { [property: string]: any[] } } =
+      data.find(({ name }) => name === services.nacl)
+    if (NetworkACLs?.data?.[region]) {
+      const dataAtRegion: RawAwsNetworkAcl[] = findServiceInstancesWithTag(
+        tag,
+        NetworkACLs.data[region]
+      )
+      if (!isEmpty(dataAtRegion)) {
+        for (const instance of dataAtRegion) {
+          const { NetworkAclId: id } = instance
+
+          connections.push({
+            id,
+            resourceType: services.nacl,
+            relation: 'child',
+            field: 'nacl',
+          })
+        }
+      }
+    }
   }
 
   const tagResult = {

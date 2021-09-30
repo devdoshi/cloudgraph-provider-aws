@@ -977,6 +977,35 @@ export type AwsNatGateway = {
   vpc?: Maybe<Array<Maybe<AwsVpc>>>;
 };
 
+export type AwsNetworkAcl = {
+  id: Scalars['String'];
+  arn: Scalars['String'];
+  default?: Maybe<Scalars['Boolean']>;
+  inboundRules?: Maybe<Array<Maybe<AwsNetworkAclRule>>>;
+  outboundRules?: Maybe<Array<Maybe<AwsNetworkAclRule>>>;
+  associatedSubnets?: Maybe<Array<Maybe<AwsNetworkAclAssociatedSubnet>>>;
+  region: Scalars['String'];
+  tags?: Maybe<Array<Maybe<Tag>>>;
+  vpc?: Maybe<Array<Maybe<AwsVpc>>>;
+  vpcId: Scalars['String'];
+};
+
+export type AwsNetworkAclAssociatedSubnet = {
+  id: Scalars['String'];
+  networkAclAssociationId?: Maybe<Scalars['String']>;
+  subnetId?: Maybe<Scalars['String']>;
+};
+
+export type AwsNetworkAclRule = {
+  id: Scalars['String'];
+  ruleNumber?: Maybe<Scalars['Int']>;
+  protocol?: Maybe<Scalars['String']>;
+  portRange?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  destination?: Maybe<Scalars['String']>;
+  allowOrDeny?: Maybe<Scalars['String']>;
+};
+
 export type AwsNetworkInterface = {
   id: Scalars['String'];
   arn: Scalars['String'];
@@ -1219,6 +1248,7 @@ export type AwsTag = {
   appSync?: Maybe<Array<Maybe<AwsAppSync>>>;
   cloudFormationStack?: Maybe<Array<Maybe<AwsCloudFormationStack>>>;
   cloudFormationStackSet?: Maybe<Array<Maybe<AwsCloudFormationStackSet>>>;
+  nacl?: Maybe<Array<Maybe<AwsNetworkAcl>>>;
 };
 
 export type AwsTotalBillingInfo = {
@@ -1244,6 +1274,7 @@ export type AwsVpc = {
   elb?: Maybe<Array<Maybe<AwsElb>>>;
   igw?: Maybe<Array<Maybe<AwsIgw>>>;
   lambda?: Maybe<Array<Maybe<AwsLambda>>>;
+  nacl?: Maybe<Array<Maybe<AwsNetworkAcl>>>;
   natGateway?: Maybe<Array<Maybe<AwsNatGateway>>>;
   networkInterface?: Maybe<Array<Maybe<AwsNetworkInterface>>>;
   route53HostedZone?: Maybe<Array<Maybe<AwsRoute53HostedZone>>>;
