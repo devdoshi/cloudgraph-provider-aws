@@ -11,6 +11,7 @@ export default {
   cloudFormationStack: 'cloudFormationStack',
   cloudFormationStackSet: 'cloudFormationStackSet',
   cloudfront: 'cloudfront',
+  cloudtrail: 'cloudtrail',
   cloudwatch: 'cloudwatch',
   ebs: 'ebs',
   ec2Instance: 'ec2Instance',

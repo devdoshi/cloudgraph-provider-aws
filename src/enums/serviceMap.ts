@@ -10,6 +10,7 @@ import AppSync from '../services/appSync'
 import ASG from '../services/asg'
 import Billing from '../services/billing'
 import CloudFront from '../services/cloudfront'
+import CloudTrail from '../services/cloudtrail'
 import CloudFormationStack from '../services/cloudFormationStack'
 import CloudFormationStackSet from '../services/cloudFormationStackSet'
 import CloudWatch from '../services/cloudwatch'
@@ -46,6 +47,7 @@ export default {
   [services.asg]: ASG,
   [services.billing]: Billing,
   [services.cloudfront]: CloudFront,
+  [services.cloudtrail]: CloudTrail,
   [services.cloudFormationStack]: CloudFormationStack,
   [services.cloudFormationStackSet]: CloudFormationStackSet,
   [services.cloudwatch]: CloudWatch,
